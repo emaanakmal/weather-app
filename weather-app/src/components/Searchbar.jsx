@@ -4,60 +4,63 @@ export default function Searchbar({ weatherData, setWeatherData, setError, unit,
   const [city, setCity] = useState('');
 
   async function handleSearch(event) {
-        event.preventDefault();
-        if (!city.trim()) {
-            console.log('city empty');
-            setCity('');
-            return;
-        }
+    event.preventDefault();
+    
+    try {
+      if (!city.trim()) {
+        setWeatherData(null);
+        throw new Error('Please enter a city name');
+      }
 
-        try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0276bfc30b75ae6db2c8c7079f35b7d0&units=${unit}`);
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0276bfc30b75ae6db2c8c7079f35b7d0&units=${unit}`);
 
-            if (!response.ok) {
-                throw new Error('City not found or invalid request');
-            }
+      if (!response.ok) {
+        throw new Error('City not found or invalid request');
+      }
 
-            const data = await response.json();
-            setWeatherData(data);
-            setError(null);
+      const data = await response.json();
+      setWeatherData(data);
+      setError(null);
 
-        } catch (error) {
-            setError(error.message);
-            setWeatherData(null);
-        }
+    } catch (error) {
+      setError(error.message);
+      setWeatherData(null);
+    }
   }
 
-   async function toggleUnit() {
-        if (!city.trim()) return;
+  async function toggleUnit() {
+    const newUnit = unit === 'metric' ? 'imperial' : 'metric';
+    setUnit(newUnit);
+    
+    try {
+      if (!city.trim()) {
+        setWeatherData(null);
+        throw new Error('Please enter a city name');
+      }
+      const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0276bfc30b75ae6db2c8c7079f35b7d0&units=${newUnit}`
+      );
 
-        const newUnit = unit === 'metric' ? 'imperial' : 'metric';
-        setUnit(newUnit);
-        
-        try {
-            const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0276bfc30b75ae6db2c8c7079f35b7d0&units=${newUnit}`
-            );
+      if (!response.ok) {
+        throw new Error('City Not Found');
+      }
 
-            if (!response.ok) {
-                throw new Error('City not found');
-            }
+      const data = await response.json();
+      setWeatherData(data);
+      setError(null);
 
-            const data = await response.json();
-            setWeatherData(data);
-            setError(null);
-
-        } catch (error) {
-            setError(error.message ?? 'Failed to fetch weather data');
-            setWeatherData(null);
-        }
+    } catch (error) {
+      setError(error.message ?? 'Failed to fetch weather data');
+      setWeatherData(null);
+    }
   };
 
   return (
-    <form onSubmit={handleSearch}>
+    <form onSubmit={handleSearch} className="search-form">
       <input
         className="search-input"
         type="text"
+        name="city"
         value={city}
         onChange={(event) => setCity(event.target.value)}
         placeholder="Enter City Name"

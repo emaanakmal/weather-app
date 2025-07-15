@@ -1,10 +1,10 @@
 export default function WeatherInfo({ weatherData, error, unit }) {
   if (error) {
-        return <div>{error}</div>;
+        return <div className="error-message">{error}</div>;
   }
 
   if (!weatherData) {
-    return <div>Enter a city to see the weather</div>;
+    return <div className="info-message">Enter a city to see the weather</div>;
   }
 
   return (

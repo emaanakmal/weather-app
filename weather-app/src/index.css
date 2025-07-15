@@ -22,17 +22,14 @@ body {
 }
 
 .app-title {
-  font-size: 24px;
   font-weight: bold;
   margin-bottom: 16px;
   text-align: center;
 }
 
 .search-form {
-  display: block;
   margin-bottom: 16px;
-  margin-left: auto;
-  margin-right: auto;
+  align-items: center;
 }
 
 .search-input {
@@ -40,6 +37,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  margin-left: 56px;
 }
 
 .search-input:focus {
@@ -60,7 +58,14 @@ body {
   cursor: pointer;
 }
 
-.search-button:hover {
+.unit-toggle-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-button:hover, 
+.unit-toggle-button:hover {
   background-color: #c36273;
 }
 
@@ -92,7 +97,6 @@ body {
 .error-message {
   color: #ef4444;
   text-align: center;
-  padding-top: 16px;
 }
 
 .info-message {
