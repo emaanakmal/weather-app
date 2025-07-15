@@ -1,2 +1,2 @@
-#A Simple Weather App
+# A Simple Weather App
 Made using React and the OpenWeatherMap API.
