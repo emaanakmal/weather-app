@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-card {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.search-form {
+  display: block;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #ff7782;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.search-button,
+.unit-toggle-button {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #ff7782;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #c36273;
+}
+
+.weather-info {
+  text-align: center;
+}
+
+.city-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.temperature {
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+.description {
+  text-transform: capitalize;
+  margin: 8px 0;
+}
+
+.humidity,
+.wind-speed {
+  margin: 4px 0;
+}
+
+.error-message {
+  color: #ef4444;
+  text-align: center;
+  padding-top: 16px;
+}
+
+.info-message {
+  color: #6b7280;
+  text-align: center;
+}
